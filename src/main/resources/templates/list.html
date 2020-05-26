@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang=”en” xmlns:th=”www.thymeleaf.org”>
+
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+
+<body>
+<button><a th:href="@{/add}">Add Course</a></button>
+<h2>List of all courses</h2>
+<table>
+    <tr th:if="${courses == 0}" >
+        <th>
+            You don't have any courses yet.
+        </th>
+    </tr>
+    <tr th:unless="${courses} == 0">
+        <th>Title</th>
+        <th>Instructor</th>
+        <th>Credits</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="course : ${courses}">
+        <td>[[${course.title}]]</td>
+        <td>[[${course.instructor}]]</td>
+        <td>[[${course.credits}]]</td>
+
+        <td>
+            <a th:href="@{/update/{id}(id=${course.id})}">Update</a>
+            <a th:href="@{/details/{id}(id=${course.id})}">Details</a>
+            <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
+        </td>
+
+    </tr>
+</table>
+</body>
+</html>
